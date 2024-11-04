@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+using namespace std;
 
 class Reservoir
 {
@@ -77,6 +79,9 @@ public:
 		type = new char[strlen(type_S) + 1];
 		strcpy_s(type, strlen(type_S) + 1, type_S);
 	}
+
+	void volume(Reservoir* obj_mas);
+	void square(Reservoir* obj_mas);
 
 	~Reservoir()
 	{
