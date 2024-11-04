@@ -1,5 +1,4 @@
 #pragma once
-#include "Header.h"
 
 class Reservoir
 {
@@ -12,11 +11,19 @@ private:
 public:
 	Reservoir() : Reservoir(nullptr, 0, 0, 0, nullptr) {};
 	Reservoir(char* name_S, int width_S, int legth_S, int max_depth_S, char* type_S)
-		: name{ new char[strlen(name_S) + 1] }, width{ width_S }, legth{ legth_S }, max_depth{ max_depth_S },
-		type{ new char[strlen(type_S) + 1] }
+		: name{}, width{ width_S }, legth{ legth_S }, max_depth{ max_depth_S },
+		type{}
 	{
-		strcpy_s(name, strlen(name_S) + 1, name_S);
-		strcpy_s(type, strlen(type_S) + 1, type_S);
+		if(name_S)
+		{
+			name = new char[strlen(name_S) + 1];
+			strcpy_s(name, strlen(name_S) + 1, name_S);
+		}
+		if(type_S)
+		{
+			type = new char[strlen(type_S) + 1];
+			strcpy_s(type, strlen(type_S) + 1, type_S);
+		}
 	}
 
 	const char* get_name() const
