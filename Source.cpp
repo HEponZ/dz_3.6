@@ -28,9 +28,11 @@ int main()
 		{
 		case ADD:
 			obj_mas = add(obj_mas, size);
+			cout << "Добавлено\n";
 			break;
 		case DELETE:
 			obj_mas = delete_res(obj_mas, size);
+			cout << "Удалено\n";
 			break;
 		case PRINT:
 			print(obj_mas, size);
@@ -41,7 +43,6 @@ int main()
 		case SQUARE:
 			cout << "Введите номер водоема: ";
 			cin >> num;
-
 			cout << "Площадь: " << obj_mas->square(obj_mas, num) << "km^2\n";
 			break;
 		case COMPARE_TYPE:
@@ -73,7 +74,14 @@ int main()
 			{
 				cout << "Типы сравниваемых водоемов не равны\n";
 			}
-
+			break;
+		case COPY:
+			obj_mas->copy(obj_mas);
+			break;
+		case SAVE:
+			save(obj_mas, size);
+			cout << "Сохранено\n";
+			break;
 		}
 	} while (choise != 0);
 

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <stdio.h>
 using namespace std;
 
 class Reservoir
@@ -25,6 +26,18 @@ public:
 		{
 			type = new char[strlen(type_S) + 1];
 			strcpy_s(type, strlen(type_S) + 1, type_S);
+		}
+	}
+	Reservoir(const Reservoir& res) : name{ new char[strlen(res.name) + 1] }, width{ res.width }, 
+		legth{ res.legth }, max_depth{ res.max_depth }, type{ new char[strlen(res.type) + 1] }
+	{
+		for (int i{ 0 }; i < strlen(name); i++)
+		{
+			name[i] = res.name[i];
+		}
+		for (int i{ 0 }; i < strlen(type); i++)
+		{
+			type[i] = res.type[i];
 		}
 	}
 
@@ -84,6 +97,7 @@ public:
 	int square(Reservoir* obj_mas, int num);
 	int compare_type(Reservoir* obj_mas, int num1, int num2);
 	int compare_squre_one_type(Reservoir* obj_mas);
+	void copy(Reservoir* obj_mas);
 
 	~Reservoir()
 	{

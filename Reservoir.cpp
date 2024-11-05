@@ -47,3 +47,21 @@ int Reservoir::compare_squre_one_type(Reservoir* obj_mas)
 	}
 	return 0;
 }
+
+void Reservoir::copy(Reservoir* obj_mas)
+{
+	int num, num2;
+
+	cout << "Введите номер копируемого водоема: ";
+	cin >> num;
+	cout << "Введите номер водоема куда хотите скопировать: ";
+	cin >> num2;
+
+	strcpy_s(obj_mas[num2 - 1].name, strlen(obj_mas[num - 1].name) + 1, obj_mas[num - 1].name);
+	obj_mas[num2 - 1].width = obj_mas[num - 1].width;
+	obj_mas[num2 - 1].legth = obj_mas[num - 1].legth;
+	obj_mas[num2 - 1].max_depth = obj_mas[num - 1].max_depth;
+	strcpy_s(obj_mas[num2 - 1].type, strlen(obj_mas[num - 1].type) + 1, obj_mas[num - 1].type);
+
+	cout << "Копирование произошло успешно\n";
+}

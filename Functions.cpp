@@ -45,7 +45,7 @@ void print(Reservoir* obj_mas, int size)
 {
 	for (int i{ 0 }; i < size; i++)
 	{
-		printf("%s\n%d\n%d\n%d\n%s\n", obj_mas[i].get_name(), obj_mas[i].get_width(), obj_mas[i].get_legth(), obj_mas[i].get_max_depth(), obj_mas[i].get_type());
+		printf("\n%s\n%d\n%d\n%d\n%s\n", obj_mas[i].get_name(), obj_mas[i].get_width(), obj_mas[i].get_legth(), obj_mas[i].get_max_depth(), obj_mas[i].get_type());
 	}
 }
 
@@ -54,7 +54,7 @@ Reservoir* delete_res(Reservoir* obj_mas, int& size)
 	Reservoir* del_mas = new Reservoir[--size];
 	int num, j = 0;
 
-	cout << "Введите номер удаляемого человека: ";
+	cout << "Введите номер удаляемого водоема: ";
 	cin >> num;
 	--num;
 
@@ -74,4 +74,27 @@ Reservoir* delete_res(Reservoir* obj_mas, int& size)
 	delete[] obj_mas;
 
 	return del_mas;
+}
+
+int save(Reservoir* obj_mas, int size)
+{
+	FILE* file;
+	int count = 0;
+
+	if (fopen_s(&file, "Reservoir.txt", "w") != NULL)
+	{
+		cout << "Не удалось открыть файл\n";
+		return 404;
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		fprintf_s(file, "%s\n%d\n%d\n%d\n%s\n", obj_mas[i].get_name(), obj_mas[i].get_width(), obj_mas[i].get_legth(), obj_mas[i].get_max_depth(), obj_mas[i].get_type());
+	}
+
+	if (fclose(file) != NULL)
+	{
+		cout << "Не удалось закрыть файл\n";
+		return 404;
+	}
 }
