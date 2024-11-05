@@ -12,35 +12,36 @@ private:
 	int max_depth; //максимальная глубина
 	char* type; // тип водоема
 public:
-	Reservoir() : Reservoir(nullptr, 0, 0, 0, nullptr) {};
+	Reservoir() : Reservoir(nullptr, 0, 0, 0, nullptr) {}; // делегированный конструктор по умолчанию
 	Reservoir(char* name_S, int width_S, int legth_S, int max_depth_S, char* type_S)
 		: name{}, width{ width_S }, legth{ legth_S }, max_depth{ max_depth_S },
 		type{}
 	{
 		if(name_S)
 		{
-			name = new char[strlen(name_S) + 1];
-			strcpy_s(name, strlen(name_S) + 1, name_S);
+			name = new char[strlen(name_S) + 1]; // выделение динам памяти
+			strcpy_s(name, strlen(name_S) + 1, name_S); //копирование
 		}
 		if(type_S)
 		{
-			type = new char[strlen(type_S) + 1];
-			strcpy_s(type, strlen(type_S) + 1, type_S);
+			type = new char[strlen(type_S) + 1]; // выделение динам памяти
+			strcpy_s(type, strlen(type_S) + 1, type_S);//копирование
 		}
-	}
+	} // конструктор с параметрами
 	Reservoir(const Reservoir& res) : name{ new char[strlen(res.name) + 1] }, width{ res.width }, 
 		legth{ res.legth }, max_depth{ res.max_depth }, type{ new char[strlen(res.type) + 1] }
 	{
-		for (int i{ 0 }; i < strlen(name); i++)
+		for (int i{ 0 }; i < strlen(res.name); i++)
 		{
 			name[i] = res.name[i];
 		}
-		for (int i{ 0 }; i < strlen(type); i++)
+		for (int i{ 0 }; i < strlen(res.type); i++)
 		{
 			type[i] = res.type[i];
 		}
-	}
+	} //конструктор копирования
 
+	//аксессоры
 	const char* get_name() const
 	{
 		return name;
@@ -52,7 +53,7 @@ public:
 	int get_legth() const
 	{
 		return legth;
-	}
+	} 
 	int get_max_depth() const
 	{
 		return max_depth;
@@ -62,6 +63,7 @@ public:
 		return type;
 	}
 
+	//модификаторы
 	void set_name(const char* name_S)
 	{
 		if (name)
@@ -95,11 +97,12 @@ public:
 
 	void volume(Reservoir* obj_mas);
 	int square(Reservoir* obj_mas, int num);
-	int compare_type(Reservoir* obj_mas, int num1, int num2);
+	int compare_type(Reservoir* obj_mas, int num1, int num2); //прототипы методов
 	int compare_squre_one_type(Reservoir* obj_mas);
 	void copy(Reservoir* obj_mas);
 
-	~Reservoir()
+	
+	~Reservoir()//деструктор
 	{
 		delete[] name;
 		delete[] type;

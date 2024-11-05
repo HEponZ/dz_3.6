@@ -3,10 +3,10 @@
 int main()
 {
 	setlocale(LC_ALL, "rus");
-	Reservoir* obj_mas{ nullptr };
+	Reservoir* obj_mas{ nullptr };  //создание всех переменных и массива обьектов
 	int choise, size = 0, num, num2;
 
-	enum MENU {
+	enum MENU { //енам для меню
 		EXIT = 0,
 		ADD,
 		DELETE,
@@ -27,23 +27,23 @@ int main()
 		switch(choise)
 		{
 		case ADD:
-			obj_mas = add(obj_mas, size);
-			cout << "Добавлено\n";
+			obj_mas = add(obj_mas, size); //вызов функции добваления и приравнивание указателя на 
+			cout << "Добавлено\n"; //старый массив к новому
 			break;
 		case DELETE:
-			obj_mas = delete_res(obj_mas, size);
-			cout << "Удалено\n";
+			obj_mas = delete_res(obj_mas, size); // вызов функции удаленияи приравнивание указателя на 
+			cout << "Удалено\n";//старый массив к новому
 			break;
 		case PRINT:
-			print(obj_mas, size);
+			print(obj_mas, size);// вызов функции вывода
 			break;
 		case VOLUME:
-			obj_mas->volume(obj_mas);
+			obj_mas->volume(obj_mas); // вызов функции подсчета обьема
 			break;
 		case SQUARE:
 			cout << "Введите номер водоема: ";
 			cin >> num;
-			cout << "Площадь: " << obj_mas->square(obj_mas, num) << "km^2\n";
+			cout << "Площадь: " << obj_mas->square(obj_mas, num) << "km^2\n"; // вызов функции подсчета площади
 			break;
 		case COMPARE_TYPE:
 			cout << "Введите номер первого водоема для сравнения: ";
@@ -51,7 +51,7 @@ int main()
 			cout << "Введите номер второго водоема: ";
 			cin >> num2;
 
-			if (obj_mas->compare_type(obj_mas, num, num2) == 1)
+			if (obj_mas->compare_type(obj_mas, num, num2) == 1) // вызов функции сравнения типов
 			{
 				cout << "Типы водоемов равны\n";
 			}
@@ -61,8 +61,8 @@ int main()
 			}
 			break;
 		case COMPARE_SQUARE_ONE_TYPE:
-			num = obj_mas->compare_squre_one_type(obj_mas);
-			if (num == 2)
+			num = obj_mas->compare_squre_one_type(obj_mas); // вызов функции сравнения площади если
+			if (num == 2)                                  // одинаковый тип
 			{
 				cout << "Площади водоемов с одинаковыми типами равны\n";
 			}
@@ -76,10 +76,10 @@ int main()
 			}
 			break;
 		case COPY:
-			obj_mas->copy(obj_mas);
+			obj_mas->copy(obj_mas); // вызов функции копирования
 			break;
 		case SAVE:
-			save(obj_mas, size);
+			save(obj_mas, size);   // вызов функции сохранения в файл
 			cout << "Сохранено\n";
 			break;
 		}
