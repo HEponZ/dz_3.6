@@ -4,7 +4,7 @@ int main()
 {
 	setlocale(LC_ALL, "rus");
 	Reservoir* obj_mas{ nullptr };
-	int choise, size = 0;
+	int choise, size = 0, num, num2;
 
 	enum MENU {
 		EXIT = 0,
@@ -29,6 +29,9 @@ int main()
 		case ADD:
 			obj_mas = add(obj_mas, size);
 			break;
+		case DELETE:
+			obj_mas = delete_res(obj_mas, size);
+			break;
 		case PRINT:
 			print(obj_mas, size);
 			break;
@@ -36,8 +39,41 @@ int main()
 			obj_mas->volume(obj_mas);
 			break;
 		case SQUARE:
-			obj_mas->square(obj_mas);
+			cout << "Введите номер водоема: ";
+			cin >> num;
+
+			cout << "Площадь: " << obj_mas->square(obj_mas, num) << "km^2\n";
 			break;
+		case COMPARE_TYPE:
+			cout << "Введите номер первого водоема для сравнения: ";
+			cin >> num;
+			cout << "Введите номер второго водоема: ";
+			cin >> num2;
+
+			if (obj_mas->compare_type(obj_mas, num, num2) == 1)
+			{
+				cout << "Типы водоемов равны\n";
+			}
+			else
+			{
+				cout << "Типы водоемов не равны\n";
+			}
+			break;
+		case COMPARE_SQUARE_ONE_TYPE:
+			num = obj_mas->compare_squre_one_type(obj_mas);
+			if (num == 2)
+			{
+				cout << "Площади водоемов с одинаковыми типами равны\n";
+			}
+			else if (num == 1)
+			{
+				cout << "Площажи водоемов с одинаковыми типами не равны\n";
+			}
+			else
+			{
+				cout << "Типы сравниваемых водоемов не равны\n";
+			}
+
 		}
 	} while (choise != 0);
 

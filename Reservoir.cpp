@@ -10,12 +10,40 @@ void Reservoir::volume(Reservoir* obj_mas)
 	cout << "Объем: " << obj_mas[num - 1].width * obj_mas[num - 1].legth * obj_mas[num - 1].max_depth << "km^3\n";
 }
 
-void Reservoir::square(Reservoir* obj_mas)
+int Reservoir::square(Reservoir* obj_mas, int num)
 {
-	int num;
+	int  S;
 
-	cout << "Введите номер водоема: ";
-	cin >> num;
+	S = obj_mas[num - 1].width * obj_mas[num - 1].legth;
 
-	cout << "Площадь: " << obj_mas[num - 1].width * obj_mas[num - 1].legth << "km^2\n";
+	return S;
+}
+
+int Reservoir::compare_type(Reservoir* obj_mas, int num1, int num2)
+{
+	if (strcmp(obj_mas[num1 - 1].type, obj_mas[num2 - 1].type) == 0)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+int Reservoir::compare_squre_one_type(Reservoir* obj_mas)
+{
+	int num1, num2;
+
+	cout << "Введите номер первого водоема для сравнения: ";
+	cin >> num1;
+	cout << "Введите номер второго водоема: ";
+	cin >> num2;
+
+	if (compare_type(obj_mas, num1, num2) == 1)
+	{
+		if (square(obj_mas, num1) == square(obj_mas, num2))
+		{
+			return 2;
+		}
+		return 1;
+	}
+	return 0;
 }

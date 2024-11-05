@@ -81,7 +81,9 @@ public:
 	}
 
 	void volume(Reservoir* obj_mas);
-	void square(Reservoir* obj_mas);
+	int square(Reservoir* obj_mas, int num);
+	int compare_type(Reservoir* obj_mas, int num1, int num2);
+	int compare_squre_one_type(Reservoir* obj_mas);
 
 	~Reservoir()
 	{

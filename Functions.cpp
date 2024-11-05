@@ -48,3 +48,30 @@ void print(Reservoir* obj_mas, int size)
 		printf("%s\n%d\n%d\n%d\n%s\n", obj_mas[i].get_name(), obj_mas[i].get_width(), obj_mas[i].get_legth(), obj_mas[i].get_max_depth(), obj_mas[i].get_type());
 	}
 }
+
+Reservoir* delete_res(Reservoir* obj_mas, int& size)
+{
+	Reservoir* del_mas = new Reservoir[--size];
+	int num, j = 0;
+
+	cout << "¬ведите номер удал€емого человека: ";
+	cin >> num;
+	--num;
+
+	for (int i{ 0 }; i < size + 1; i++)
+	{
+		if (i != num)
+		{
+			del_mas[j].set_name(obj_mas[i].get_name());
+			del_mas[j].set_width(obj_mas[i].get_width());
+			del_mas[j].set_legth(obj_mas[i].get_legth());
+			del_mas[j].set_max_depth(obj_mas[i].get_max_depth());
+			del_mas[j].set_type(obj_mas[i].get_type());
+			j++;
+		}
+	}
+
+	delete[] obj_mas;
+
+	return del_mas;
+}
