@@ -36,6 +36,7 @@ int main()
 			break;
 		case PRINT:
 			print(obj_mas, size);// вызов функции вывода
+			cout << "Всего " << obj_mas->get_count() << " водоемов создано\n";
 			break;
 		case VOLUME:
 			obj_mas->volume(obj_mas); // вызов функции подсчета обьема

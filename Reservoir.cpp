@@ -68,3 +68,5 @@ void Reservoir::copy(Reservoir* obj_mas)
 
 	cout << "Копирование произошло успешно\n";
 }
+
+int Reservoir::count{ 0 };//инициализация статика

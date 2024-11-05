@@ -11,12 +11,14 @@ private:
 	int legth; //глубина
 	int max_depth; //максимальная глубина
 	char* type; // тип водоема
+	static int count; //создание статика
 public:
 	Reservoir() : Reservoir(nullptr, 0, 0, 0, nullptr) {}; // делегированный конструктор по умолчанию
 	Reservoir(char* name_S, int width_S, int legth_S, int max_depth_S, char* type_S)
 		: name{}, width{ width_S }, legth{ legth_S }, max_depth{ max_depth_S },
 		type{}
 	{
+		count++;//увеличение статика
 		if(name_S)
 		{
 			name = new char[strlen(name_S) + 1]; // выделение динам памяти
@@ -62,6 +64,10 @@ public:
 	{
 		return type;
 	}
+	static int get_count()
+	{
+		return count;
+	}
 
 	//модификаторы
 	void set_name(const char* name_S)
@@ -104,6 +110,7 @@ public:
 	
 	~Reservoir()//деструктор
 	{
+		count--;
 		delete[] name;
 		delete[] type;
 	}
