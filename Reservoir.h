@@ -33,85 +33,35 @@ public:
 	Reservoir(const Reservoir& res) : name{ new char[strlen(res.name) + 1] }, width{ res.width }, 
 		legth{ res.legth }, max_depth{ res.max_depth }, type{ new char[strlen(res.type) + 1] }
 	{
-		for (int i{ 0 }; i < strlen(res.name); i++)
-		{
-			name[i] = res.name[i];
-		}
-		for (int i{ 0 }; i < strlen(res.type); i++)
-		{
-			type[i] = res.type[i];
-		}
+		count++;
+		strcpy_s(name, strlen(res.name), res.name);
+		strcpy_s(type, strlen(res.type), res.type);
 	} //конструктор копирования
+	Reservoir(int max_depth) : Reservoir(nullptr, 0, 0, max_depth, nullptr){};
 
 	//аксессоры
-	const char* get_name() const
-	{
-		return name;
-	}
-	int get_width() const
-	{
-		return width;
-	}
-	int get_legth() const
-	{
-		return legth;
-	} 
-	int get_max_depth() const
-	{
-		return max_depth;
-	}
-	const char* get_type() const
-	{
-		return type;
-	}
+	const char* get_name() const;
+	int get_width() const;
+	int get_legth() const;
+	int get_max_depth() const;
+	const char* get_type() const;
 	static int get_count()
 	{
 		return count;
 	}
 
 	//модификаторы
-	void set_name(const char* name_S)
-	{
-		if (name)
-		{
-			delete[] name;
-		}
-		name = new char[strlen(name_S) + 1];
-		strcpy_s(name, strlen(name_S) + 1, name_S);
-	}
-	void set_width(const int width_S)
-	{
-		width = width_S;
-	}
-	void set_legth(const int legth_S)
-	{
-		legth = legth_S;
-	}
-	void set_max_depth(const int max_depth_S)
-	{
-		max_depth = max_depth_S;
-	}
-	void set_type(const char* type_S)
-	{
-		if (type)
-		{
-			delete[] type;
-		}
-		type = new char[strlen(type_S) + 1];
-		strcpy_s(type, strlen(type_S) + 1, type_S);
-	}
+	void set_name(const char* name_S);
+	void set_width(const int width_S);
+	void set_legth(const int legth_S);
+	void set_max_depth(const int max_depth_S);
+	void set_type(const char* type_S);
 
-	void volume(Reservoir* obj_mas);
-	int square(Reservoir* obj_mas, int num);
-	int compare_type(Reservoir* obj_mas, int num1, int num2); //прототипы методов
-	int compare_squre_one_type(Reservoir* obj_mas);
-	void copy(Reservoir* obj_mas);
+	void volume(int num);
+	int square(int num);
+	int compare_type(int num1, int num2); //прототипы методов
+	int compare_squre_one_type();
+	void copy();
 
-	
-	~Reservoir()//деструктор
-	{
-		count--;
-		delete[] name;
-		delete[] type;
-	}
+	~Reservoir();
 };

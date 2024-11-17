@@ -39,12 +39,14 @@ int main()
 			cout << "Всего " << obj_mas->get_count() << " водоемов создано\n";
 			break;
 		case VOLUME:
-			obj_mas->volume(obj_mas); // вызов функции подсчета обьема
+			cout << "Введите номер водоема: ";
+			cin >> num;
+			obj_mas->volume(num); // вызов функции подсчета обьема
 			break;
 		case SQUARE:
 			cout << "Введите номер водоема: ";
 			cin >> num;
-			cout << "Площадь: " << obj_mas->square(obj_mas, num) << "km^2\n"; // вызов функции подсчета площади
+			cout << "Площадь: " << obj_mas->square(num) << "km^2\n"; // вызов функции подсчета площади
 			break;
 		case COMPARE_TYPE:
 			cout << "Введите номер первого водоема для сравнения: ";
@@ -52,7 +54,7 @@ int main()
 			cout << "Введите номер второго водоема: ";
 			cin >> num2;
 
-			if (obj_mas->compare_type(obj_mas, num, num2) == 1) // вызов функции сравнения типов
+			if (obj_mas->compare_type(num, num2) == 1) // вызов функции сравнения типов
 			{
 				cout << "Типы водоемов равны\n";
 			}
@@ -62,7 +64,7 @@ int main()
 			}
 			break;
 		case COMPARE_SQUARE_ONE_TYPE:
-			num = obj_mas->compare_squre_one_type(obj_mas); // вызов функции сравнения площади если
+			num = obj_mas->compare_squre_one_type(); // вызов функции сравнения площади если
 			if (num == 2)                                  // одинаковый тип
 			{
 				cout << "Площади водоемов с одинаковыми типами равны\n";
@@ -77,7 +79,7 @@ int main()
 			}
 			break;
 		case COPY:
-			obj_mas->copy(obj_mas); // вызов функции копирования
+			obj_mas->copy(); // вызов функции копирования
 			break;
 		case SAVE:
 			save(obj_mas, size);   // вызов функции сохранения в файл
